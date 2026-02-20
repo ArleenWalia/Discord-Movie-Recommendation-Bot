@@ -247,10 +247,6 @@ async def summary (ctx):
 
     # If no ratings are found
     if user_ratings.empty:
-        await ctx.send("You have not submitted any ratings yet.")
-        return
-
-    if user_ratings.empty:
         await ctx.send("You haven't submitted any ratings yet. Use !rate to add some!")
         return
 
@@ -326,7 +322,7 @@ async def synopsis(ctx, *, movie_title: str):
         completion = client.chat.completions.create(
             model = "gpt-3.5-turbo-0125",
             messages = [
-                {"role": "system", "content": "You aare a helpful assistant the generates movie synopses."},
+                {"role": "system", "content": "You are a helpful assistant the generates movie synopses."},
                 {"role": "user", "content": f"Please provide a summary of the movie '{movie_title}'."}
             ],
             temperature = 0.7, # creativity
@@ -344,4 +340,3 @@ async def synopsis(ctx, *, movie_title: str):
         await ctx.send(f"An error occurred: {str(e)}")
 
 bot.run(os.getenv("TOKEN"))
-bot.run(os.getenv("DISCORD_BOT_TOKEN"))
